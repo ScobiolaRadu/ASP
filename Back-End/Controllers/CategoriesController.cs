@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ProiectOpt.Data;
+using ProiectOpt.Interfaces;
 using ProiectOpt.Models;
 
 namespace ProiectOpt.Controllers
@@ -16,9 +17,12 @@ namespace ProiectOpt.Controllers
     {
         private readonly DataContext _context;
 
-        public CategoriesController(DataContext context)
+        private readonly IUnitOfWork unitOfWork;
+
+        public CategoriesController(DataContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
+            this.unitOfWork = unitOfWork;
         }
 
         // GET: api/Categories
@@ -48,6 +52,13 @@ namespace ProiectOpt.Controllers
             }
 
             return categorie;
+        }
+
+        [Route("[action]")]
+        [HttpGet]
+        public IEnumerable<Categorie> GetInstrumenteCuCorzi()
+        {
+            return unitOfWork.Categorie.GetInstrumenteCuCorzi();
         }
 
         // PUT: api/Categories/5

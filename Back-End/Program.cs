@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using ProiectOpt.Interfaces;
+using ProiectOpt.UnitOfWork;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,6 +24,9 @@ builder.Services.AddDbContext<ProiectOpt.Data.DataContext>(
     {
         options.UseSqlServer(builder.Configuration.GetConnectionString("DataContext"));
     });
+
+//Add UnitOfWork
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 //Add Auth
 builder.Services.AddAuthentication(options =>
