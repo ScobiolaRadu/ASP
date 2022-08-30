@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ProiectOpt.Auth;
 using ProiectOpt.Data;
 using ProiectOpt.Interfaces;
 using ProiectOpt.Models;
@@ -61,6 +63,8 @@ namespace ProiectOpt.Controllers
             return unitOfWork.Categorie.GetInstrumenteCuCorzi();
         }
 
+
+        [Authorize(Roles = UserRoles.Admin)]
         // PUT: api/Categories/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
@@ -92,6 +96,7 @@ namespace ProiectOpt.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = UserRoles.Admin)]
         // POST: api/Categories
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -107,6 +112,7 @@ namespace ProiectOpt.Controllers
             return CreatedAtAction("GetCategorie", new { id = categorie.Id }, categorie);
         }
 
+        [Authorize(Roles = UserRoles.Admin)]
         // DELETE: api/Categories/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategorie(int id)
