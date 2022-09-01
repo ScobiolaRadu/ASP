@@ -10,13 +10,17 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 
 import { httpInterceptorProviders } from './_helpers/http.interceptor';
+import { CategorieComponent } from './categorie/categorie.component';
+import { InstrumentComponent } from './instrument/instrument.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    CategorieComponent,
+    InstrumentComponent
   ],
   imports: [
     BrowserModule,

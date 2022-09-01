@@ -1,0 +1,14 @@
+<table>
+    <thead>
+        <th>
+        Instrumente
+    </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let instrument of instruments">
+            <td><img src="{{instrument.instrumentPoza}}"></td>
+            <td>{{instrument.instrumentNume}}<td>
+            <td>{{instrument.instrumentDescriere}}</td>
+        </tr>
+    </tbody>       
+</table>
